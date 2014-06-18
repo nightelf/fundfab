@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'fundfab.views.index', name='home'),
+    url(r'^$', include('mainapp.urls')),
 )
