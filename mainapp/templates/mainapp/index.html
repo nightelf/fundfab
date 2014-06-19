@@ -1,4 +1,14 @@
 {% extends 'fundfab/base.html' %}
+{% load staticfiles %}
 {% block content %}
-<h1>Test Response.</h1>
+        {% verbatim %}
+        <div ng-controller="ListingsCtrl">
+            <h1>{{title}}</h1>
+        </div>
+        {% endverbatim %}
+
+{% endblock %}
+{% block script %}
+    {{ block.super }}
+<script src="{% static 'mainapp/js/main.js' %}"></script>
 {% endblock %}
