@@ -1,2 +1,3 @@
 @brand-primary #60066A
 @brand-warning #FFEA43
+@navbar-inverse-bg #60066A
