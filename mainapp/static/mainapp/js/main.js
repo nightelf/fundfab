@@ -1,12 +1,14 @@
 angular.module('fundfab', ['ui.bootstrap', 'ui.router']).
     config(function($stateProvider, $urlRouterProvider, $locationProvider) {
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider
+        .when('', '/')
+        .otherwise("/");
     $stateProvider
       .state('home',{
         url: '/',
         views: {
             'header': {
-                template: '<div>header</div>',
+                templateUrl: '/static/fundfab/templates/home.header.html',
                 controller: headerCtrl
             },
             'content': {
@@ -14,7 +16,7 @@ angular.module('fundfab', ['ui.bootstrap', 'ui.router']).
                 controller: ListingsCtrl
             },
             'footer': {
-                template: '<div>footer</div>',
+                templateUrl: '/static/fundfab/templates/home.footer.html',
                 controller: footerCtrl
             },
         }
@@ -28,9 +30,9 @@ function ListingsCtrl($scope) {
 }
 function headerCtrl($scope) {
 
-    $scope.title = 'My Custom Title';
+    $scope.title = 'My Custom header';
 }
 function footerCtrl($scope) {
 
-    $scope.title = 'My Custom Title';
+    $scope.title = 'My Custom footer';
 }

@@ -14,13 +14,13 @@
 </head>
 <body>
 {% block header %}
-    {% include "fundfab/header.html" %}
+    <header ui-view="header"></header>
 {% endblock %}
-    <div id="content">
+    <div id="content" style="margin-top:60px;">
         {% block content %}{% endblock %}
     </div>
 {% block footer %}
-    {% include "fundfab/footer.html" %}
+    <footer ui-view="footer"></footer>
 {% endblock %}
 {% block script %}
 <script src="{% static 'fundfab/js/angular-1.2.18.min.js' %}"></script>
