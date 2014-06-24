@@ -1,0 +1,5 @@
+split
+screen 0 python manage.py runserver
+select 0
+focus down
+screen 1
