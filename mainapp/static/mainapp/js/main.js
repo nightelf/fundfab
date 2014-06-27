@@ -7,6 +7,12 @@ var fundfab = angular.module('fundfab', ['ui.bootstrap', 'ui.router']).
       .state('home',{
         url: '/',
         views: {
+            'contextMenu': {
+                templateUrl: '/static/fundfab/templates/home.context.html',
+                controller: function($scope) {
+
+                }
+            },
             'content': {
                 templateUrl: '/static/fundfab/templates/home.content.html',
                 controller: ListingsCtrl

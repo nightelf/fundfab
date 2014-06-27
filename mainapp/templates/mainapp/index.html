@@ -7,9 +7,19 @@
 {% endblock %}
 
 {% block content %}
-        <div class="container">
-        <div  ui-view="content"></div>
+    <div class="jumbotron">
+        <div class="container"><h1>My Jumbotron</h1></div>
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div ui-view="contextMenu"></div>
         </div>
+        <div class="col-md-9">
+            <div  ui-view="content"></div>
+        </div>
+    </div>
+    </div>
 {% endblock %}
 
 {% block script %}
