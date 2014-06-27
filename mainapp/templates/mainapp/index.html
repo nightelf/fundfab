@@ -1,9 +1,18 @@
 {% extends 'fundfab/base.html' %}
 {% load staticfiles %}
-{% block content %}
-        <div ui-view="content"></div>
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'mainapp/style/main.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
+
+{% block content %}
+        <div class="container">
+        <div  ui-view="content"></div>
+        </div>
+{% endblock %}
+
 {% block script %}
     {{ block.super }}
-<script src="{% static 'mainapp/js/main.js' %}"></script>
+    <script src="{% static 'mainapp/js/main.js' %}"></script>
 {% endblock %}
