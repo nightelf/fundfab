@@ -5,3 +5,7 @@
 ul.nav > li.active > a {
     border-left: 2px solid #8C099A;
 }
+# this centers the components of the navbar
+.navbar-nav li {
+    line-height: 50px;
+}
