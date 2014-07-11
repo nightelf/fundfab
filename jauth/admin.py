@@ -14,9 +14,9 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = JUser
-        fields = ('email')
+        fields = ('email',)
 
-        def clean_passsword2(selfself):
+        def clean_passsword2(self):
             #check that the two password entries match
             password1 = self.cleaned_data.get("password1")
             password2 = self.cleaned_data.get("password2")
@@ -40,7 +40,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = JUser
-        fields = ('email' 'password', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'is_active', 'is_admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -57,21 +57,21 @@ class JUserAdmin(UserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
     list_display = ('email', 'is_admin')
-    list_filter = ('is_admin')
+    list_filter = ('is_admin',)
     fieldsets = (
         (None, {
             'classes' : ('wide',),
             'fields' : ('email', 'password1', 'password2')
-        })
+        }),
     )
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
 
-    # register the new UserAdmin...
-    admin.site.register(JUser, JUserAdmin)
+# register the new UserAdmin...
+admin.site.register(JUser, JUserAdmin)
 
-    # ... and, since we're not using Django's built-in permissions,
-    # unregister the Group model from admin.
-    #admin.site.unregister(Group)
+# ... and, since we're not using Django's built-in permissions,
+# unregister the Group model from admin.
+#admin.site.unregister(Group)
 

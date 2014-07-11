@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'south',
 
     # django-allauth specific
-    'django.contrib.sites',
+    #'django.contrib.sites',
 
     # 'allauth',
     # 'allauth.account',
@@ -50,7 +50,8 @@ INSTALLED_APPS = (
 
     #Fundfab specific
     'fundfab',
-    'mainapp'
+    'mainapp',
+    'jauth'
 )
 
 MIDDLEWARE_CLASSES = (

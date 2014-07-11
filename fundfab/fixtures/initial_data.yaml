@@ -1,14 +1,15 @@
-- model : sites.Site
-  pk : 1
-  fields :
-    domain : 127.0.0.1:8000
-    name : 'FundFab'
-- model : socialaccount.SocialApp
-  pk : 1
-  fields :
-    provider : facebook
-    name : Facebook
-    secret : 17d4d3b7f8a7830f51541e4c0d314703
-    client_id : 265055933697568
-    sites :
-        - 1
+#- model : sites.Site
+#  pk : 1
+#  fields :
+#    domain : 127.0.0.1:8000
+#    name : 'FundFab'
+#- model : socialaccount.SocialApp
+#  pk : 1
+#  fields :
+#    provider : facebook
+#    name : Facebook
+#    secret : 17d4d3b7f8a7830f51541e4c0d314703
+#    client_id : 265055933697568
+#    sites :
+#        - 1
+[]

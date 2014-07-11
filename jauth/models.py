@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 # Create your models here.
 
@@ -35,7 +35,10 @@ class JUserManager(BaseUserManager):
         return user
 
 
-class JUser(AbstractBaseUser):
+class JUser(AbstractBaseUser, PermissionsMixin):
+
+    first_name = models.CharField('first name', max_length=30, blank=True)
+    last_name = models.CharField('last name', max_length=30, blank=True)
     email = models.EmailField(
         verbose_name='email_address',
         max_length=255,
@@ -59,6 +62,17 @@ class JUser(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+    #
+    #
+    # def has_perm(self, perm, obj=None):
+    #     "Does the user have a specific permission?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
+    #
+    # def has_module_perms(self, app_label):
+    #     "Does the user have permissions to view the app `app_label`?"
+    #     # Simplest possible answer: Yes, always
+    #     super()
 
     @property
     def is_staff(self):
