@@ -65,5 +65,3 @@ class JUser(AbstractBaseUser):
         """Is the user a member of the staff?"""
         # All admins are staff.
         return self.is_admin
-
-
