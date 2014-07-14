@@ -31,7 +31,7 @@ var fundfab = angular.module('fundfab', ['ngCookies', 'ui.bootstrap', 'ui.router
             },
             'content': {
                 templateUrl: '/static/fundfab/templates/home.signin.html',
-                controller: function($scope, $http) {
+                controller: function($scope, $http, toggleSidebar) {
 
                     $scope.login = {};
                     $scope.login.email = '';
@@ -65,8 +65,21 @@ var fundfab = angular.module('fundfab', ['ngCookies', 'ui.bootstrap', 'ui.router
         }
     });
     // @todo html5mode $locationProvider.html5mode(true);
-}).run(function($http, $cookies) {
+}).factory('toggleSidebar', function() {
+      var toggleState = false;
+
+      //factory function body that constructs shinyNewServiceInstance
+      return {
+            setState: function() {
+                toggleState = !toggleState; console.log(toggleState)
+            },
+            getState: function() {
+                return toggleState;
+            }
+      }
+}).run(function($http, $cookies, toggleSidebar, $rootScope, toggleSidebar) {
     $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+    $rootScope.toggleSidebar = toggleSidebar;
 });
 
 

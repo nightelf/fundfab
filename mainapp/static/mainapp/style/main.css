@@ -1,3 +1,8 @@
+// css
+html, body {
+    overflow-x: hidden;
+}
+
 #content {
     margin-top:50px;
 }
@@ -8,4 +13,47 @@ ul.nav > li.active > a {
 # this centers the components of the navbar
 .navbar-nav li {
     line-height: 50px;
+}
+
+# off canvas
+@media screen and (max-width: 767px) {
+.row-offcanvas {
+    position: relative;
+    transition: all 0.25s ease-out 0s;
+}
+.row-offcanvas-right {
+    right: 0;
+}
+.row-offcanvas-left {
+    left: 0;
+}
+.row-offcanvas-right .sidebar-offcanvas {
+    right: -50%;
+}
+.row-offcanvas-left .sidebar-offcanvas {
+    left: -50%;
+}
+.row-offcanvas-right.active {
+    right: 50%;
+}
+.row-offcanvas-left.active {
+    left: 50%;
+}
+.sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%;
+}
+
+.letterP3 {
+  -webkit-transform: rotate(90deg);
+     -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+       -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+            color: #000;
+            font-size: 22px;
+            height: 200px;
+            width: 200px;
+    vertical-align:top;
 }
