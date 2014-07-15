@@ -31,6 +31,7 @@ class JUserManager(BaseUserManager):
         """
         user = self.create_user(email, password=password)
         user.is_admin = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 

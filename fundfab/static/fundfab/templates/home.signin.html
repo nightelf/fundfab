@@ -1,18 +1,23 @@
 <form role="form" class="form-horizontal">
-    <div class="form-group col-sm-12">
-        <span class="col-sm-6">
+    <div class="form-group col-xs-12">
+        <span class="hidden-xs col-sm-2 col-md-3"></span>
+        <span class="col-xs-12 col-sm-8 col-md-6">
             <input type="text" class="form-control" placeholder="Email" ng-model="login.email">
         </span>
-        <span class="hidden-xs col-sm-6"></span>
+        <span class="hidden-xs col-sm-2 col-md-3"></span>
     </div>
-
-    <div class="form-group col-sm-12">
-        <span class="col-sm-6">
+    <div class="form-group col-xs-12">
+        <span class="hidden-xs col-sm-2 col-md-3"></span>
+        <span class="col-xs-12 col-sm-8 col-md-6">
             <input type="password" class="form-control" placeholder="Password" ng-model="login.password">
         </span>
-        <span class="hidden-xs col-sm-6"></span>
+        <span class="hidden-xs col-sm-2 col-md-3"></span>
     </div>
-    <div class="form-group col-sm-12">
-        <button class="btn btn-default" ng-click="loginSubmit()" ng-disabled="disabled" type="submit">Sign in</button>
+    <div class="form-group col-xs-12">
+        <span class="hidden-xs col-sm-2 col-md-3"></span>
+        <span class="col-xs-12 col-sm-8 col-md-6">
+            <button class="btn btn-default" ng-click="loginSubmit()" ng-disabled="disabled" type="submit">Sign in</button>
+        </span>
+        <span class="hidden-xs col-sm-2 col-md-3"></span>
     </div>
 </form>
