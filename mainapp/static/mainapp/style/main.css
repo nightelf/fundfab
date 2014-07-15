@@ -55,6 +55,11 @@ ul.nav > li.active > a {
             height: 200px;
             width: 200px;
     vertical-align:top;
-    position: absolute;
-    margin-top:50px;
+}
+
+.transparent
+{
+  opacity:.50;
+  -moz-opacity:.50;
+  filter:alpha(opacity=50);
 }

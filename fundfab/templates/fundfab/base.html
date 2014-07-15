@@ -16,11 +16,6 @@
 {% block header %}
     <header ng-include src="'{% static 'fundfab/templates/home.header.html' %}'"></header>
 {% endblock %}
-    <div class="navbar" role="navigation">
-    <p class="pull-left visible-xs letterP3">
-        <button ng-click="toggleSidebar.setState()" type="button" class="btn btn-default">menu</button>
-    </p>
-    </div>
     <div id="content">
         {% block content %}{% endblock %}
     </div>
