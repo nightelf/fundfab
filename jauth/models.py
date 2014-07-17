@@ -42,7 +42,7 @@ class JUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField('last name', max_length=30, blank=True)
     email = models.EmailField(
         verbose_name='email_address',
-        max_length=255,
+        max_length=100,
         unique=True,
     )
     is_active = models.BooleanField(default=True)

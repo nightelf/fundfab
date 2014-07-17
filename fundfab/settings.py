@@ -146,7 +146,7 @@ EMAIL_HOST_USER = 'fundfab@gmail.com'
 EMAIL_HOST_PASSWORD = '99bafdnuf'
 
 # auth and allauth settings
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 # SOCIALACCOUNT_QUERY_EMAIL = True
 # SOCIALACCOUNT_PROVIDERS = {
 #     'facebook': {
@@ -157,3 +157,6 @@ EMAIL_HOST_PASSWORD = '99bafdnuf'
 ACCOUNT_AUTHENTICATION_METHOD ="username_email"
 
 AUTH_USER_MODEL = 'jauth.JUser'
+
+# for url regexes, append slash eg. 'admin' -> admin/
+APPEND_SLASH = True

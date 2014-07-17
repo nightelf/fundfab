@@ -79,6 +79,7 @@ var fundfab = angular.module('fundfab', ['ngCookies', 'ui.bootstrap', 'ui.router
       }
 }).run(function($http, $cookies, toggleSidebar, $rootScope, toggleSidebar) {
     $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+    $http.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
     $rootScope.toggleSidebar = toggleSidebar;
 });
 
