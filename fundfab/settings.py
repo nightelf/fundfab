@@ -154,7 +154,7 @@ LOGIN_REDIRECT_URL = '/'
 #         'METHOD': 'js_sdk'  # instead of 'oauth2'
 #     }
 # }
-ACCOUNT_AUTHENTICATION_METHOD ="username_email"
+#ACCOUNT_AUTHENTICATION_METHOD ="username_email"
 
 AUTH_USER_MODEL = 'jauth.JUser'
 

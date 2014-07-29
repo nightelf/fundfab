@@ -41,7 +41,7 @@ class JUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField('first name', max_length=30, blank=True)
     last_name = models.CharField('last name', max_length=30, blank=True)
     email = models.EmailField(
-        verbose_name='email_address',
+        verbose_name='email address',
         max_length=100,
         unique=True,
     )

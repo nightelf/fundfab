@@ -28,7 +28,7 @@ class AuthenticationForm(forms.Form):
     password = forms.CharField(label=_("Password"), max_length=128)
 
     error_messages = {
-        'invalid_login': _("Please enter a correct %(username)s and password. "
+        'invalid_login': _("Please enter a correct %(email)s and password. "
                            "Note that both fields may be case-sensitive."),
         'inactive': _("This account is inactive."),
     }
@@ -51,7 +51,7 @@ class AuthenticationForm(forms.Form):
         password = self.cleaned_data.get('password')
 
         if email and password:
-            self.user_cache = authenticate(username=email,
+            self.user_cache = authenticate(email=email,
                                            password=password)
             if self.user_cache is None:
                 raise forms.ValidationError(
