@@ -6,6 +6,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout
 from django.http import HttpResponseRedirect, QueryDict
 from django.shortcuts import resolve_url
 from django.conf import settings
+import sys
 import jauth.models
 import json
 
@@ -22,24 +23,25 @@ def login_email_submit(request, redirect_field_name=REDIRECT_FIELD_NAME):
 
     #Displays the login form and handles the login action.
     redirect_to = request.REQUEST.get(redirect_field_name, '')
-
+    resp = {}
     if request.method == "POST" and request.is_ajax():
 
         data = json.loads(str(request.body, 'utf-8'))
         form = AuthenticationForm(request, data)
-        if form.is_valid():
 
-            # Ensure the user-originating redirection url is safe.
-            if not is_safe_url(url=redirect_to, host=request.get_host()):
-                redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+        try:
+            if form.is_valid():
 
-            # Okay, security check complete. Log the user in.
-            auth_login(request, form.get_user())
+                # Ensure the user-originating redirection url is safe.
+                if not is_safe_url(url=redirect_to, host=request.get_host()):
+                    redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
 
-            return HttpResponseRedirect(redirect_to)
-    resp = {
-        'error': 'this is an error',
-    }
+                # Okay, security check complete. Log the user in.
+                auth_login(request, form.get_user())
+        except Exception as e:
+            resp['error'] = e.args
+    resp['redirect_to'] = redirect_to
+
     response = HttpResponse(json.dumps(resp))
     response['Content-Type'] = 'application/json'
     return response
