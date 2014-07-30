@@ -53,7 +53,11 @@ var fundfab = angular.module('fundfab', ['ngCookies', 'ui.bootstrap', 'ui.router
                         $http({data: postData, method: $scope.login.method, url: $scope.login.url, cache: false}).
                         success(function(data, status) {
                             $scope.login.disabled = false;
-                            console.log('there was a success');
+                            console.log(data.success.message);
+                            // remove once cookie catch is done.
+                            if (data.hasOwnProperty('csrfToken') && data.csrfToken !== null) {
+                                $http.defaults.headers.post['X-CSRFToken'] = data.csrfToken;
+                            }
                         }).
                         error(function(data, status) {
                             $scope.disabled = false;

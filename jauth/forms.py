@@ -77,3 +77,26 @@ class AuthenticationForm(forms.Form):
 
     def get_user(self):
         return self.user_cache
+
+
+    def get_formatted_errors(self, override_msg=None):
+
+        formatted_errors = {
+            'count': 0,
+            'form': [],
+            'fields': {}
+        }
+        if override_msg is None:
+            if self.errors.get('__all__') is not None:
+                formatted_errors['form'] += self.errors.get('__all__')
+                formatted_errors['count'] = len(formatted_errors['form'])
+            for name, field in self.fields.items():
+                formatted_errors['fields'][name] = []
+                if self.errors.get(name) is not None:
+                    formatted_errors['fields'][name] += self.errors.get(name)
+                    formatted_errors['count'] += len(formatted_errors['fields'][name])
+        else:
+            formatted_errors['form'] = [override_msg]
+            formatted_errors['count'] = 1
+
+        return formatted_errors

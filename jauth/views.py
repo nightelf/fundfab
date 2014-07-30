@@ -25,13 +25,12 @@ def login_email_submit(request, redirect_field_name=REDIRECT_FIELD_NAME):
     #Displays the login form and handles the login action.
     redirect_to = request.REQUEST.get(redirect_field_name, '')
     resp = {
-        'error': {
-            'form': [],
-            'email': [],
-            'password': [],
-        },
-        'success': []
+        'error': {},
+        'success': {'pass': False, 'message': ''},
+        'redirect_to': redirect_to,
+        'csrfCookie': None
     }
+    override_msg = None
     if request.method == "POST" and request.is_ajax():
 
         data = json.loads(str(request.body, 'utf-8'))
@@ -41,7 +40,7 @@ def login_email_submit(request, redirect_field_name=REDIRECT_FIELD_NAME):
             if form.is_valid():
                 # Ensure the user-originating redirection url is safe.
                 if not is_safe_url(url=redirect_to, host=request.get_host()):
-                    redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+                    resp['redirect_to'] = resolve_url(settings.LOGIN_REDIRECT_URL)
 
                 # Okay, security check complete. Log the user in.
                 auth_login(request, form.get_user())
@@ -49,24 +48,14 @@ def login_email_submit(request, redirect_field_name=REDIRECT_FIELD_NAME):
                 if user is not None:
                     # the password verified for the user
                     if user.is_active:
-                        resp['success'].append("User is valid, active and authenticated")
-                        resp['csrfCookie'] = request.META.get('CSRF_COOKIE')
-                    else:
-                        resp['error']['form'].append("The password is valid, but the account has been disabled!")
-                else:
-                    # the authentication system was unable to verify the username and password
-                    resp['error']['form'].append("The username and password were incorrect.")
-            else:
-                if form.errors.get('__all__') is not None:
-                    resp['error']['form'] += form.errors.get('__all__')
-                if form.errors.get('email') is not None:
-                    resp['error']['email'] += form.errors.get('email')
-                if form.errors.get('password') is not None:
-                    resp['error']['password'] += form.errors.get('password')
+                        resp['success']['pass'] = True
+                        resp['success']['message'] = "Welcome."
+                        # remove once cookie catch is done.
+                        resp['csrfToken'] = request.META.get('CSRF_COOKIE')
 
         except Exception as e:
-            resp['error'] = ["An error occurred. Please contact the system admin."]
-    resp['redirect_to'] = redirect_to
+            override_msg = "An error occurred. Please contact the system admin."
+        resp['error'] = form.get_formatted_errors(override_msg=override_msg)
 
     response = HttpResponse(json.dumps(resp))
     response['Content-Type'] = 'application/json'
