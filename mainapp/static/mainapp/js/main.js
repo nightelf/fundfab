@@ -42,6 +42,13 @@ var fundfab = angular.module('fundfab', ['ngCookies', 'ui.bootstrap', 'ui.router
 
                     // login submit
                     $scope.loginSubmit = function() {
+
+                        for (field in $scope.loginForm) {
+                            if (field.charAt(0) !== '$') {
+                                $scope.loginForm[field].closed = false;
+                            }
+                        }
+
                         $scope.login.disabled = true;
                         $scope.code = null;
                         $scope.response = null;
