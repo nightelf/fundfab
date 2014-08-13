@@ -1,7 +1,7 @@
-<form name="loginForm" role="form" class="form-horizontal" init="$scope.login.form = this" novalidate>
+<form name="loginForm" role="form" class="form-horizontal" init="$scope.login.form = this" novalidate autocomplete="off">
     <div class="form-group row">
         <span class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <input type="email" required name="email" class="form-control" placeholder="Email" ng-model="login.email">
+            <input type="email" required name="email" class="form-control" placeholder="Email" ng-model="login.email" >
         </span>
     </div>
     <div ng-show="loginForm.email.$dirty && loginForm.email.$invalid  && !loginForm.email.closed" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -10,12 +10,15 @@
     </div>
     <div class="form-group row">
         <span class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <input type="password" name="password" class="form-control" placeholder="Password" ng-model="login.password">
+            <input type="password" required name="password" class="form-control" placeholder="Password" ng-model="login.password">
         </span>
+    </div>
+    <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid  && !loginForm.password.closed" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <alert ng-show="loginForm.password.$error.required" type="danger" close="loginForm.password.closed = true">Password is required.</alert>
     </div>
     <div class="form-group row">
         <span class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <button class="btn btn-default" ng-click="loginSubmit();" ng-disabled="disabled" type="submit">Sign in</button>
+            <button class="btn btn-default" ng-click="loginSubmit();" ng-disabled="disabled || loginForm.email.$invalid || loginForm.password.$invalid" type="submit">Sign in</button>
         </span>
     </div>
 </form>
