@@ -5,21 +5,26 @@
     {{ block.super }}
     <link href="{% static 'mainapp/style/main.css' %}" rel="stylesheet" media="screen">
 {% endblock %}
-
-{% block content %}
-    <div class="jumbotron">
-        <div class="container"><h1>My Jumbotron</h1></div>
+{% block mobile_sidebar %}
+    <div class="col-xs-6 hidden-sm hidden-md hidden-lg sidebar-offcanvas">
+        <div ui-view="contextMenu"></div>
     </div>
-    <div class="container">
-        <div class="row row-offcanvas row-offcanvas-left" ng-class="{active: toggleSidebar.getState()}">
-            <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+{% endblock %}
+{% block content %}
+
+
+        <div class="jumbotron">
+            <div class="container"><h1>My Jumbotron</h1></div>
+        </div>
+        <div class="container">
+            <div class="hidden-xs col-sm-3">
                 <div ui-view="contextMenu"></div>
             </div>
             <div class="col-xs-12 col-sm-9">
                 <div  ui-view="content"></div>
             </div>
         </div>
-    </div>
+
 {% endblock %}
 
 {% block script %}

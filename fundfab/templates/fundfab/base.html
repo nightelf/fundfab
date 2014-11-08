@@ -16,12 +16,15 @@
 {% block header %}
     <header ng-include src="'{% static 'fundfab/templates/home.header.html' %}'"></header>
 {% endblock %}
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-{% block footer %}
-    <footer ng-include src="'{% static 'fundfab/templates/home.footer.html' %}'"></footer>
-{% endblock %}
+<div class="row row-offcanvas row-offcanvas-left" ng-class="{active: toggleSidebar.getState()}">
+    {% block mobile_sidebar %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+        <footer ng-include src="'{% static 'fundfab/templates/home.footer.html' %}'"></footer>
+    {% endblock %}
+</div>
 {% block script %}
 <script src="{% static 'fundfab/js/angular-1.2.18.min.js' %}"></script>
 <script src="{% static 'fundfab/js/angular-cookies-1.2.18.min.js' %}"></script>
